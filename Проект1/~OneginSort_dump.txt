@@ -1,4 +1,4 @@
-Mon Oct  5 02:15:45 2015
+Mon Oct  5 12:09:15 2015
 
 Size of file: 166092
 Number of read symbols: 166092
@@ -5971,7 +5971,7 @@ Number of read symbols: 166092
 5965.166061 Лишь море Черное шумит…'#
 5966.166086 * * *
 *****************
-sizeof(linesArray): 4
+sizeof(linesArray): 8
 Number of Lines: 5967
 No error
 Elapsed time: 1

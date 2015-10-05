@@ -1,4 +1,7 @@
 // FUPM 571 Borzilov Alexander
+// todo: кодовые страницы
+
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <assert.h>
@@ -14,10 +17,10 @@ struct mystring
 };
 
 size_t Lenght(FILE* file);
-int countNumberOfLines(char buf[], int len);
-int CreateStringArray(char buf[], int len, int numLines, char *line[]);
+int countNumberOfLines(const char buf[],const int len);
+int CreateStringArray(char buf[],const int len,const int numLines, char *line[]);
 int strcmpbegin(const void* a, const void* b);
-int Write(char *line[], char fileName[], int numLines);
+int Write(char *line[], char fileName[],const int numLines);
 int Write(mystring line[], char fileName[], int numLines);
 FILE* StartDump(const time_t seconds = time(NULL));
 bool EndDump(FILE* file, const time_t timeS);
@@ -29,7 +32,7 @@ int Min(const int a, const int b);
 int strcmpend(const void* a, const void* b);
 void mystring_desctor(mystring *This);
 void mystring_ctor(mystring *This, const char* str);
-inline bool IsLetter(char s);
+inline bool IsLetter(const char s);
 
 bool dump = 1;
 enum method {bubble, quick};
@@ -71,13 +74,13 @@ int main()
 	if (dump) fprintf(dumpFile, "Number of read symbols: %d\n", numOfWasRead);
 	if(numOfWasRead != lenght) return perror("Error"), 1;
 	fclose(fInput);
-
+	
+	//printf("%s",buffer);
 	if (dump) SmartPrintText(buffer, dumpFile, lenght);
-
 	int numOfLines = countNumberOfLines(buffer, lenght);
 	assert(numOfLines > 0);
 
-	char** linesArray = (char**)calloc(numOfLines, sizeof(int));
+	char** linesArray = (char**)calloc(numOfLines, sizeof(linesArray[0]));
 	if (linesArray == nullptr) return perror("Error"), 1;
 	if (dump) fprintf(dumpFile, "sizeof(linesArray): %d\nNumber of Lines: %d\n",
 		sizeof(linesArray),numOfLines);
@@ -120,7 +123,7 @@ size_t Lenght(FILE* file)
 	return len;
 }
 
-int countNumberOfLines(char buf[], int len)
+int countNumberOfLines(const char buf[], const int len)
 {
 	if (buf == nullptr) return -1;
 
@@ -130,7 +133,7 @@ int countNumberOfLines(char buf[], int len)
 	return count;
 }
 
-int CreateStringArray(char buf[], int len, int numLines, char *line[])
+int CreateStringArray(char buf[], const int len, const int numLines, char *line[])
 {
 	if (buf == nullptr || line == nullptr) return -1;
 
@@ -140,6 +143,7 @@ int CreateStringArray(char buf[], int len, int numLines, char *line[])
 		line[i] = buf + j;
 		while (j++ < len && buf[j] != '\n') ;
 		buf[j] = '\0';
+	//	if(dump) printf("%s\n", line[i]);
 	}
 	line[numLines-1] = buf + j;
 	return 0;
@@ -150,7 +154,7 @@ inline int strcmpbegin(const void* a, const void* b)
 	return strcmp(*(const char**)a, *(const char**)b);
 }
 
-int Write(char *line[], char fileName[], int numLines)
+int Write(char *line[], char fileName[],const int numLines)
 {
 	if (line == nullptr) return -1;
 
@@ -162,7 +166,7 @@ int Write(char *line[], char fileName[], int numLines)
 	return 0;
 }
 
-int Write(mystring line[], char fileName[], int numLines)
+int Write(mystring line[], char fileName[], const int numLines)
 {
 	if (line == nullptr) return -1;
 
@@ -201,11 +205,17 @@ bool SmartPrintText(const char text[], FILE* file, int lenght)
 	{
 		if (text[i] == '\n')
 		{
-			fprintf(file, "%c\n%d.%d ", enter, numOfLines, i); ++numOfLines;
+			bool check = fprintf(file, "%c\n%d.%d ", enter, numOfLines, i);
+			assert(check);
+			++numOfLines;
 		}
 		else if (text[i] == '\r') fprintf(file, "%c", carriage);
 		else if (text[i] == '\0') fprintf(file, "%c", end);
-		else fprintf(file, "%c", text[i]);
+		else
+		{
+			bool check = fprintf(file, "%c", text[i]);
+			assert(check);
+		}
 	}
 
 	fprintf(file, "\n*****************\n");
@@ -252,24 +262,24 @@ inline int strcmpend(const void* a, const void* b)
 {
 	const mystring* a2 = (mystring*)a;
 	const mystring* b2 = (mystring*)b;
-	int min = Min((a2)->len, b2->len);
-	for (int i = min - 2, j = min - 2; i && j; --i, --j)
+//	int min = Min(a2->len, b2->len);
+	for (int i = a2->len, j = b2->len; (i >= 0) && (j >= 0);)
 	{
-
 		//if (!IsLetter(a2->str[i]))
-		//{
-		//	--j;
-		//	continue;
-		//}
-		//if (!IsLetter(b2->str[j]))
 		//{
 		//	--i;
 		//	continue;
 		//}
-		if (a2->str[i] > b2->str[j]) return 1;
-		if (a2->str[i] == b2->str[j]) return 0;
-		return -1;
+		//if (!IsLetter(b2->str[j]))
+		//{
+		//	--j;
+		//	continue;
+		//}
+		if (a2->str[i] != b2->str[j]) return a2->str[i] - b2->str[j];
+		--j;
+		--i;
 	}
+		return 0;
 }
 
 inline int Min(const int a, const int b)
@@ -290,8 +300,9 @@ void mystring_desctor(mystring *This)
 	This->len = -1;
 }
 
-inline bool IsLetter(char s)
+inline bool IsLetter(const char s)
 {
-	if (s >= 65 && s <= 89 || s >= 97 && s <= 122 || s >= 128 && s <= 175 || s >= 224 && s <= 247) return 1;
+	if ((s >= 65) && (s <= 89) || (s >= 97) && (s <= 122) || (s >= 128) && (s <= 175) || 
+		(s >= 224) && (s <= 247)) return 1;
 	else return 0;
 }
