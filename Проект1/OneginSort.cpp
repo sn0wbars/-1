@@ -9,7 +9,7 @@
 #include <locale>
 #include <stdlib.h>
 #include <ctime>
-#include <algorithm>
+//#include <algorithm>  - for swap
 
 struct mystring
 {
@@ -26,7 +26,7 @@ int Write(mystring line[], const char fileName[], const int numLines);
 FILE* StartDump(const time_t seconds = time(NULL));
 bool EndDump(FILE* file, const time_t timeS);
 bool SmartPrintText(const char text[], FILE* file, int lenght);
-//template <typename T> void swap(T* a, T* b); - dont work :c
+template <typename T> void swap(T* a, T* b);
 bool BubbleSort(char** text, int(*compare)(const char str1[], const char str2[]), int N);
 bool BubbleSort(char** text, int(*compare)(const void* str1, const void* str2), int N);
 int Min(const int a, const int b);
@@ -64,18 +64,18 @@ int main()
 	}
 
 	FILE* fInput = fopen(InputName1, "rb");
-	if (fInput == nullptr) return perror("Can't open file\nErrno"), 1;
+	if (fInput == nullptr) return perror("Can't open file\nErrno"), __LINE__;
 
 	const int lenght = Lenght(fInput);
-	if (lenght < 0) return perror("Negative lenght of file\nErrno"), 2;
+	if (lenght < 0) return perror("Negative lenght of file\nErrno"), __LINE__;
 	if (dump) fprintf(dumpFile, "Size of file: %d\n", lenght);
 
 	char* buffer = (char*)calloc(lenght, sizeof(*buffer));
-	if (buffer == nullptr) return perror("Can't create buffer\nErrno"), 3;
+	if (buffer == nullptr) return perror("Can't create buffer\nErrno"), __LINE__;
 
 	const int numOfWasRead = (fread_s(buffer, lenght, sizeof(char), lenght, fInput));
 	if (dump) fprintf(dumpFile, "Number of read symbols: %d\n", numOfWasRead);
-	if(numOfWasRead != lenght) return perror("Number of read symbols isn't equal lenght of file\nErrno"), 4;
+	if(numOfWasRead != lenght) return perror("Number of read symbols isn't equal lenght of file\nErrno"), __LINE__;
 	fclose(fInput);
 	
 	if (dump) 
@@ -86,20 +86,20 @@ int main()
 		}
 
 	const int numOfLines = countNumberOfLines(buffer, lenght);
-	if (numOfLines < 0) return perror("Negative number of lines\nErrno"), 5;
+	if (numOfLines < 0) return perror("Negative number of lines\nErrno"), __LINE__;
 
 	char** linesArray = (char**)calloc(numOfLines, sizeof(linesArray[0]));
-	if (linesArray == nullptr) return perror("Can't create Array of lines\nErrno"), 6;
+	if (linesArray == nullptr) return perror("Can't create Array of lines\nErrno"), __LINE__;
 	if (dump) fprintf(dumpFile, "sizeof(linesArray): %d\nNumber of Lines: %d\n",
 		sizeof(linesArray), numOfLines);
 
 	if (CreateLinesArray(buffer, lenght, numOfLines, linesArray))
-		return perror("Can't fill array of lines\nErrno"), 7;
+		return perror("Can't fill array of lines\nErrno"), __LINE__;
 
 	if (SortMode == bubble) BubbleSort(linesArray, *strcmp, numOfLines);
 	else qsort(linesArray, numOfLines, sizeof(linesArray[0]), strcmpbegin);
 	Write(linesArray, OutputName1, numOfLines);
-	if (errno) return perror("Error"), 8;
+	if (errno) return perror("Error"), __LINE__;
 	
 	mystring* stringesArray = (mystring*)calloc(numOfLines,sizeof(stringesArray[0]));
 	for (int i = 0; i < numOfLines; ++i)
@@ -109,7 +109,7 @@ int main()
 
 	qsort(stringesArray, numOfLines, sizeof(stringesArray[0]), mystring_strcmpend);
 	Write(stringesArray, OutputName2, numOfLines);
-	if (errno) return perror("Error"), 9;
+	if (errno) return perror("Error"), __LINE__;
 
 	free(buffer);
 	buffer = NULL;
@@ -270,12 +270,12 @@ bool BubbleSort(char** text, int(*compare)(const void* str1, const void* str2), 
 	return 0;
 }
 
-//template <typename T> inline void swap(T* a, T* b)
-//{
-//	T* c = a;
-//	*b = *a;
-//	*a = *c;
-//}
+template <typename T> inline void swap(T* a, T* b)
+{
+	T c = *b;
+	*b = *a;
+	*a = c;
+}
 
 inline int mystring_strcmpend(const void* a, const void* b)
 {
