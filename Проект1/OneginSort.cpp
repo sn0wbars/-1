@@ -9,6 +9,7 @@
 #include <locale>
 #include <stdlib.h>
 #include <ctime>
+//#include <algorithm>  - for swap
 
 struct mystring
 {
@@ -18,39 +19,39 @@ struct mystring
 
 size_t Lenght(FILE* file);
 int countNumberOfLines(const char buf[],const int len);
-int CreateStringArray(char buf[],const int len,const int numLines, char *line[]);
+int CreateLinesArray(char buf[],const int len,const int numLines, char *line[]);
 int strcmpbegin(const void* a, const void* b);
-int Write(char *line[], char fileName[],const int numLines);
-int Write(mystring line[], char fileName[], int numLines);
+int Write(char *line[], const char fileName[],const int numLines);
+int Write(mystring line[], const char fileName[], const int numLines);
 FILE* StartDump(const time_t seconds = time(NULL));
 bool EndDump(FILE* file, const time_t timeS);
 bool SmartPrintText(const char text[], FILE* file, int lenght);
-bool swap(void* a, void* b);
+template <typename T> void swap(T* a, T* b);
 bool BubbleSort(char** text, int(*compare)(const char str1[], const char str2[]), int N);
-//bool BubbleSort(char** text, int(*compare)(const void* str1, const void* str2), int N);
+bool BubbleSort(char** text, int(*compare)(const void* str1, const void* str2), int N);
 int Min(const int a, const int b);
-int strcmpend(const void* a, const void* b);
+int mystring_strcmpend(const void* a, const void* b);
 void mystring_desctor(mystring *This);
 void mystring_ctor(mystring *This, const char* str);
 inline bool IsLetter(const char s);
+void Free(mystring* array, const int Num);
 
-bool dump = 1;  // Dump
-enum method {bubble, quick}; // Bubble Quick
+bool dump = 1;
+enum method {bubble, quick};
 
 int main()
 {
 	printf("# -OneginSearch- \n");
 	setlocale(LC_ALL, "Russian");
-	time_t timeS = 0;
-	method SortMode = bubble;
-	char InputName1[] = "onegin.txt";
-	char OutputName1[] = "OneginSortFromBegin.txt";
-	char OutputName2[] = "OneginSortFromEnd.txt";
 
-	FILE* dumpFile = NULL; // global
-	// __LINE__ документация , убрать, enum myerrors(1,2,3,4)
-	// strcmpbegin проверка аргум
-	// dump fopen 'a' несколько дампов
+	time_t timeS;
+	method SortMode =bubble;
+	const char InputName1[11] = "onegin.txt";
+	const char OutputName1[24] = "OneginSortFromBegin.txt";
+	const char OutputName2[22] = "OneginSortFromEnd.txt";
+
+	FILE* dumpFile = NULL;
+	
 	if (dump)
 	{
 		timeS = time(NULL);
@@ -63,36 +64,42 @@ int main()
 	}
 
 	FILE* fInput = fopen(InputName1, "rb");
-	if (fInput == nullptr) return perror("Error"),1;
+	if (fInput == nullptr) return perror("Can't open file\nErrno"), __LINE__;
 
-	int lenght = Lenght(fInput);
-	if (lenght < 0) return perror("Error"), 1;
+	const int lenght = Lenght(fInput);
+	if (lenght < 0) return perror("Negative lenght of file\nErrno"), __LINE__;
 	if (dump) fprintf(dumpFile, "Size of file: %d\n", lenght);
 
 	char* buffer = (char*)calloc(lenght, sizeof(*buffer));
-	if (buffer == nullptr) return perror("Error"), 1;
+	if (buffer == nullptr) return perror("Can't create buffer\nErrno"), __LINE__;
 
-	int numOfWasRead = (fread_s(buffer, lenght, sizeof(char), lenght, fInput));
+	const int numOfWasRead = (fread_s(buffer, lenght, sizeof(char), lenght, fInput));
 	if (dump) fprintf(dumpFile, "Number of read symbols: %d\n", numOfWasRead);
-	if(numOfWasRead != lenght) return perror("Error"), 1;
+	if(numOfWasRead != lenght) return perror("Number of read symbols isn't equal lenght of file\nErrno"), __LINE__;
 	fclose(fInput);
 	
-	//printf("%s",buffer);
-	if (dump) SmartPrintText(buffer, dumpFile, lenght);
-	int numOfLines = countNumberOfLines(buffer, lenght);
-	assert(numOfLines > 0);
+	if (dump) 
+		if (SmartPrintText(buffer, dumpFile, lenght))
+		{
+			printf("Dump error, cant print text");
+			dump = 0;
+		}
+
+	const int numOfLines = countNumberOfLines(buffer, lenght);
+	if (numOfLines < 0) return perror("Negative number of lines\nErrno"), __LINE__;
 
 	char** linesArray = (char**)calloc(numOfLines, sizeof(linesArray[0]));
-	if (linesArray == nullptr) return perror("Error"), 1;
+	if (linesArray == nullptr) return perror("Can't create Array of lines\nErrno"), __LINE__;
 	if (dump) fprintf(dumpFile, "sizeof(linesArray): %d\nNumber of Lines: %d\n",
-		sizeof(linesArray),numOfLines);
+		sizeof(linesArray), numOfLines);
 
-	CreateStringArray(buffer, lenght, numOfLines, linesArray);
+	if (CreateLinesArray(buffer, lenght, numOfLines, linesArray))
+		return perror("Can't fill array of lines\nErrno"), __LINE__;
 
-	if (SortMode) BubbleSort(linesArray, *strcmp, numOfLines);
+	if (SortMode == bubble) BubbleSort(linesArray, *strcmp, numOfLines);
 	else qsort(linesArray, numOfLines, sizeof(linesArray[0]), strcmpbegin);
 	Write(linesArray, OutputName1, numOfLines);
-	if (errno) return perror("Error"), 1;
+	if (errno) return perror("Error"), __LINE__;
 	
 	mystring* stringesArray = (mystring*)calloc(numOfLines,sizeof(stringesArray[0]));
 	for (int i = 0; i < numOfLines; ++i)
@@ -100,14 +107,17 @@ int main()
 		mystring_ctor(&stringesArray[i], linesArray[i]);
 	}
 
-	qsort(stringesArray, numOfLines, sizeof(stringesArray[0]), strcmpend);
+	qsort(stringesArray, numOfLines, sizeof(stringesArray[0]), mystring_strcmpend);
 	Write(stringesArray, OutputName2, numOfLines);
-	if (errno) return perror("Error"), 1;
+	if (errno) return perror("Error"), __LINE__;
 
 	free(buffer);
 	buffer = NULL;
 	free(linesArray);
 	linesArray = NULL;
+	Free(stringesArray, numOfLines);
+	free(stringesArray);
+	stringesArray == NULL;
 
 	EndDump(dumpFile, timeS);
 
@@ -135,9 +145,9 @@ int countNumberOfLines(const char buf[], const int len)
 	return count;
 }
 
-int CreateStringArray(char buf[], const int len, const int numLines, char *line[])
+int CreateLinesArray(char buf[], const int len, const int numLines, char *line[])
 {
-	if (buf == nullptr || line == nullptr) return -1;
+	if (buf == nullptr || line == nullptr) return 1;
 
 	int beginOfString = 0, j = 0;
 	for (int i = 0; i < numLines-1; ++i, ++j)
@@ -156,7 +166,7 @@ inline int strcmpbegin(const void* a, const void* b)
 	return strcmp(*(const char**)a, *(const char**)b);
 }
 
-int Write(char *line[], char fileName[],const int numLines)
+int Write(char *line[], const  char fileName[], const int numLines)
 {
 	if (line == nullptr) return -1;
 
@@ -168,7 +178,7 @@ int Write(char *line[], char fileName[],const int numLines)
 	return 0;
 }
 
-int Write(mystring line[], char fileName[], const int numLines)
+int Write(mystring line[], const char fileName[], const int numLines)
 {
 	if (line == nullptr) return -1;
 
@@ -182,7 +192,7 @@ int Write(mystring line[], char fileName[], const int numLines)
 
 FILE* StartDump(const time_t seconds)
 {
-	FILE* file = fopen("~OneginSort_dump.txt", "a");
+	FILE* file = fopen("~OneginSort_dump.txt", "w");
 	tm* timeinfo = localtime(&seconds);
 	fprintf(file, "%s\n", asctime(timeinfo));
 	return file;
@@ -190,16 +200,21 @@ FILE* StartDump(const time_t seconds)
 
 bool EndDump(FILE* file, const time_t timeS)
 {
-	assert(file);
 	long int elTime = time(NULL) - timeS;
-	fprintf(file, "%s\nElapsed time: %d\n------------END------------\n\n\n\n\n", strerror(errno), elTime);
+	fprintf(file, "%s\nElapsed time: %d seconds\n------------END------------", strerror(errno), elTime);
 	fclose(file);
 	return 0;
 }
 
 bool SmartPrintText(const char text[], FILE* file, int lenght)
 {
-	const char carriage = 39, enter = 35, end = 36; // символы
+	if (text == nullptr || file == nullptr)
+	{
+		errno = EINVAL;
+		return 1;
+	}
+
+	const char carriage = 39, enter = 35, end = 36;
 
 	fprintf(file, "*****************\n0.0 ");
 
@@ -232,48 +247,53 @@ bool BubbleSort(char** text, int(*compare)(const char str1[], const char str2[])
 		errno = EINVAL;
 		return 1;
 	}
+
 	for (int i = 0; i < N; ++i)
 		for (int j = 0; j < N - 1; ++j)
 			if (compare(text[i], text[j]) < 0)
-				swap((void*)text[i], (void*)text[j]);
-	return 0;
-} // лишний сорт
-
-//bool BubbleSort(char** text, int(*compare)(const void* str1, const void* str2), int N)
-//{
-//	if (text == nullptr || N < 0)
-//	{
-//		errno = EINVAL;
-//		return 1;
-//	}
-//	for (int i = 0; i < N; ++i)
-//		for (int j = 0; j < N - 1; ++j)
-//			if (compare(text[i], text[j]) < 0)
-//				swap((void*)text[i], (void*)text[j]);
-//	return 0;
-//}
-
-inline bool swap(void* a, void* b)
-{
-	void* c = a;
-	b = a;
-	a = c;
+				std::swap(text[i], text[j]);
 	return 0;
 }
 
-inline int strcmpend(const void* a, const void* b)
+bool BubbleSort(char** text, int(*compare)(const void* str1, const void* str2), int N)
 {
-	const mystring* a2 = (mystring*)a;
-	const mystring* b2 = (mystring*)b;
+	if (text == nullptr || N < 0)
+	{
+		errno = EINVAL;
+		return 1;
+	}
+
+	for (int i = 0; i < N; ++i)
+		for (int j = 0; j < N - 1; ++j)
+			if (compare(text[i], text[j]) < 0)
+				std::swap(text[i], text[j]);
+	return 0;
+}
+
+template <typename T> inline void swap(T* a, T* b)
+{
+	T c = *b;
+	*b = *a;
+	*a = c;
+}
+
+inline int mystring_strcmpend(const void* a, const void* b)
+{
+	const mystring* a2 = (const mystring*)a;
+	const mystring* b2 = (const mystring*)b;
 //	int min = Min(a2->len, b2->len);
+
 	for (int i = a2->len, j = b2->len; (i >= 0) && (j >= 0);)
 	{
-		//if (!IsLetter(a2->str[i]))
+		//bool notAlphaA = !isalpha((unsigned char)a2->str[i]);
+		////if (dump) printf("%c ~ %c\n", a2->str[i], b2->str[j]);
+		//if(notAlphaA)
 		//{
 		//	--i;
 		//	continue;
 		//}
-		//if (!IsLetter(b2->str[j]))
+		//bool notAlphaB = !isalpha((unsigned char)b2->str[i]);
+		//if(notAlphaB)
 		//{
 		//	--j;
 		//	continue;
@@ -303,9 +323,10 @@ void mystring_desctor(mystring *This)
 	This->len = -1;
 }
 
-inline bool IsLetter(const char s)
+void Free(mystring* array, const int Num)
 {
-	if ((s >= 65) && (s <= 89) || (s >= 97) && (s <= 122) || (s >= 128) && (s <= 175) || 
-		(s >= 224) && (s <= 247)) return 1;
-	else return 0;
+	for (int i = 0; i < Num; ++i)
+	{
+		mystring_desctor(&array[i]);
+	}
 }
