@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OneginSort.cpp" />
+    <ClCompile Include="stack.cpp" />
+    <ClCompile Include="x64\Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CmdList.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ABEE1446-5A07-487A-B338-957FDC76F39F}</ProjectGuid>

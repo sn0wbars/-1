@@ -34,21 +34,23 @@ void mystring_desctor(mystring *This);
 void mystring_ctor(mystring *This, const char* str);
 inline bool IsLetter(const char s);
 
-bool dump = 1;
-enum method {bubble, quick};
+bool dump = 1;  // Dump
+enum method {bubble, quick}; // Bubble Quick
 
 int main()
 {
 	printf("# -OneginSearch- \n");
 	setlocale(LC_ALL, "Russian");
-	time_t timeS;
+	time_t timeS = 0;
 	method SortMode = bubble;
-	char InputName1[11] = "onegin.txt";
-	char OutputName1[24] = "OneginSortFromBegin.txt";
-	char OutputName2[22] = "OneginSortFromEnd.txt";
+	char InputName1[] = "onegin.txt";
+	char OutputName1[] = "OneginSortFromBegin.txt";
+	char OutputName2[] = "OneginSortFromEnd.txt";
 
-	FILE* dumpFile = NULL;
-	
+	FILE* dumpFile = NULL; // global
+	// __LINE__ документация , убрать, enum myerrors(1,2,3,4)
+	// strcmpbegin проверка аргум
+	// dump fopen 'a' несколько дампов
 	if (dump)
 	{
 		timeS = time(NULL);
@@ -180,7 +182,7 @@ int Write(mystring line[], char fileName[], const int numLines)
 
 FILE* StartDump(const time_t seconds)
 {
-	FILE* file = fopen("~OneginSort_dump.txt", "w");
+	FILE* file = fopen("~OneginSort_dump.txt", "a");
 	tm* timeinfo = localtime(&seconds);
 	fprintf(file, "%s\n", asctime(timeinfo));
 	return file;
@@ -188,15 +190,16 @@ FILE* StartDump(const time_t seconds)
 
 bool EndDump(FILE* file, const time_t timeS)
 {
+	assert(file);
 	long int elTime = time(NULL) - timeS;
-	fprintf(file, "%s\nElapsed time: %d\n------------END------------", strerror(errno), elTime);
+	fprintf(file, "%s\nElapsed time: %d\n------------END------------\n\n\n\n\n", strerror(errno), elTime);
 	fclose(file);
 	return 0;
 }
 
 bool SmartPrintText(const char text[], FILE* file, int lenght)
 {
-	const char carriage = 39, enter = 35, end = 36;
+	const char carriage = 39, enter = 35, end = 36; // символы
 
 	fprintf(file, "*****************\n0.0 ");
 
@@ -234,7 +237,7 @@ bool BubbleSort(char** text, int(*compare)(const char str1[], const char str2[])
 			if (compare(text[i], text[j]) < 0)
 				swap((void*)text[i], (void*)text[j]);
 	return 0;
-}
+} // лишний сорт
 
 //bool BubbleSort(char** text, int(*compare)(const void* str1, const void* str2), int N)
 //{
