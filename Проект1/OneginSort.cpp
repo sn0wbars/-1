@@ -39,12 +39,17 @@ void Free(mystring* array, const int Num);
 bool dump = 1;
 enum method {bubble, quick};
 
+
+// global
+// __LINE__ документация , убрать, enum myerrors(1,2,3,4)
+// strcmpbegin проверка аргум
+// dump fopen 'a' несколько дампов
 int main()
 {
 	printf("# -OneginSearch- \n");
 	setlocale(LC_ALL, "Russian");
 
-	time_t timeS;
+	time_t timeS = 0;
 	method SortMode =bubble;
 	const char InputName1[11] = "onegin.txt";
 	const char OutputName1[24] = "OneginSortFromBegin.txt";

@@ -1,22 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
 
 #define TYPE char
+
 
 #define ASSERT_OK(type, what)\
 {\
 int error = type##_OK(what);\
 if (error)\
 	{\
-	printf("OMG! ERROR! ERROR!!11\n"#type' '#what" failed in %s/%s, %d", __FILE__, __func__, __LINE__);\
-	type##_DUMP(what);\
+	printf("OMG! ERROR! ERROR!!11\n"#type' '#what" failed in %s/%s, %d\n", __FILE__, __func__, __LINE__);\
+	printf("Error code: %d", error);\
+	if (error != 0) type##_DUMP(what, #what);\
 	abort();\
 	}\
 }\
-
+//type##_DUMP(what);\
 //if (dump || error) type##_DUMP(what, #what, error);\
-
+  
 enum stack_errors
 {
 	broken,
@@ -24,21 +27,47 @@ enum stack_errors
 	arr_is_nullptr,
 	arrPtr_is_nullptr,
 	arrPtr_is_less_arr,
-	wrong_size,
+	wrong_amount,
 };
 
 struct Stack
 {
 	void* arr;
 	void* arrPtr;
+	size_t amount;
 	size_t size;
-	bool state;
+	bool state = false;
 };
 
-bool Stack_push(Stack* This, int value) //!
+bool Stack_ctor(Stack* This, size_t buffer)
+{
+	assert (This);
+	This->arrPtr = NULL;
+	This->amount = 0;
+	This->size = buffer;
+	This->arr = calloc(buffer, sizeof(TYPE));
+	This->state = true;
+	
+	return 1;
+}
+
+bool Stack_dctor(Stack* This)
 {
 	ASSERT_OK(Stack, This);
+	free(This->arr);
+	This->arr = NULL;
+	This->arrPtr = NULL;
+	This->amount = -1;
+	This->size = -1;
+	This->state = 0;
+}
 
+bool Stack_push(Stack* This, TYPE value) //!
+{
+	ASSERT_OK(Stack, This);
+	if (This->amount == (This->size) * sizeof(TYPE))
+		realloc(ACCESS(This->arr), sizeof(TYPE) * 2 * This->size);
+		  
 }
 
 int Stack_OK(Stack* This)
@@ -50,27 +79,24 @@ int Stack_OK(Stack* This)
 	if (arr == nullptr) return This->state = 0, arr_is_nullptr;
 	if (arrPtr == nullptr) return This->state = 0, arrPtr_is_nullptr;
 	if (arrPtr - arr < 0) return This->state = 0, arrPtr_is_less_arr;
-	if (This->size < arrPtr - arr) return This->state = 0, wrong_size;
+	if (This->amount < arrPtr - arr) return This->state = 0, wrong_amount;
 }
 
 bool Stack_DUMP(const Stack* This, const char name[], int error = 0)
 {
-	if (This == nullptr) printf("Can't create a dump file");
-	FILE* dumpFile = fopen("Stack_dump.txt", "a");
+	FILE* dumpFile = fopen("Stack_dump.txt", "a");\
+	if (dumpFile == nullptr) return printf("Can't create a dump file"), 0;
 	fprintf(dumpFile, __DATE__"\n\n");
 	if (error) fprintf(dumpFile, "OMG! ERROR! ERROR!!11\n\nStack %s failed in %s/%s, %d\n",name, __FILE__, __func__, __LINE__);
 	fprintf(dumpFile,"********************");
-	if (error == 0 || error == wrong_size)
-		for (int i = 0; i < This->size; ++i)
+	fprintf(dumpFile, " arr = %d/n arrPtr = %d/n size = %d/n amount = %d/n state = %d/n",
+		ACCESS(This->arr), ACCESS(This->arrPtr), This->size, This->amount, This->state);
+	if (error == 0 || error == wrong_amount)
+		for (int i = 0; i < This->amount; ++i)
 			fprintf(dumpFile,"%d. %d", i, ACCESS(This->arr)[i]);
 	fprintf(dumpFile, "********************");
 	fclose(dumpFile);
-}
-
-void Stack_ctor(Stack* This);
-{
-	assert(Stack.OK(This));
-
+	return 0;
 }
 
 inline TYPE* ACCESS(void* a)
@@ -80,6 +106,7 @@ inline TYPE* ACCESS(void* a)
 int main()
 {
 
+	return 0;
 }
 
 ////////
