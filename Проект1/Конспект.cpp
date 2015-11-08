@@ -3,6 +3,80 @@ if (++a > ++ b)
 
 
 
+////////
+//enum Commands
+//{
+//cmdPUSH = 1,
+//cmdPOP = 2,
+//cmdADD = 3,
+//
+//};
+// Файл CmdList.h
+DEF_CMD(PUSH, 1, { stackPush(&stk,v) })
+DEF_CMD(POP, 2, { stackPop(&stk,v) })
+DEF_CMD(ADD, 3)
+if (stricmp(str, "PUSH") == 0)
+fprintf(out, "%d", CmdPUSH);
+else if
+
+//asm.cpp #define DEF_CMD(name,num) cmd_##name = num // ,
+enum Commands
+{
+#include "CmdList.h"
+	cmd_Last
+};
+
+#undef DEF_CMD
+
+#define DEF_CMD(name, num)\
+if(stricmp(str, #name) == 0)\
+fprintf(out, "%d", num) // num == Cmd_##name деревья хешмапы. В свитчах двоичныйс поиск
+else
+#include "CmsList.h"
+
+printf("Error ... ");
+
+
+#define DEFCMD(name, num)\
+	{cmd_##name, #name},
+const CmdInfo Info[] =
+{
+#include "CmdList.h"
+};
+#undef DEFCMD;
+
+// processor
+switch (cmd[i])
+{
+#define DEFCMD(name, num, code)
+case num:
+{
+	code
+}
+break;
+#include "CmdList.h"
+#undef DEFCMD
+default: //error
+}
+
+//Скриптовый язык
+// SqEq.bin : 
+//run: SqEq.bin
+//	proc SqEq.bin
+//	make run
+
+//run.bat
+// asm\asm SqEq.asm %1.asm
+// proc\cpu SqEq.bin %1.bin
+// far
+// 
+
+//ТЫ.bat
+// @echo Сам %1
+// ты дурак
+
+
+#endif
 
 
 
