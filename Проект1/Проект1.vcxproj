@@ -19,10 +19,37 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CmdList.h" />
     <ClInclude Include="platypus.h" />
+    <ClInclude Include="stack.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="2007_1_A.cpp" />
+    <ClCompile Include="2007_1_B.cpp" />
+    <ClCompile Include="2007_1_C.cpp" />
+    <ClCompile Include="2007_1_D.cpp" />
+    <ClCompile Include="2007_4_A.cpp" />
+    <ClCompile Include="2007_4_B.cpp" />
+    <ClCompile Include="2007_4_C.cpp" />
+    <ClCompile Include="2007_4_D.cpp" />
+    <ClCompile Include="2008_5_A.cpp" />
+    <ClCompile Include="2008_5_B.cpp" />
+    <ClCompile Include="2008_5_C.cpp" />
+    <ClCompile Include="2008_5_D.cpp" />
+    <ClCompile Include="CPU.cpp" />
+    <ClCompile Include="list.cpp" />
+    <ClCompile Include="OneginSort.cpp" />
     <ClCompile Include="Recursive descent parser.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Конспект.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="onegin.txt" />
+    <Text Include="OneginSortFromBegin.txt" />
+    <Text Include="OneginSortFromEnd.txt" />
+    <Text Include="q.txt" />
+    <Text Include="~OneginSort_dump.txt" />
+    <Text Include="~ULTRA_SWAG_DOGE_dump.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ABEE1446-5A07-487A-B338-957FDC76F39F}</ProjectGuid>
