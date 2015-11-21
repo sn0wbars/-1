@@ -19,11 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CPU.cpp" />
-    <ClCompile Include="stack.h" />
+    <ClInclude Include="platypus.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="platypus.h" />
+    <ClCompile Include="Recursive descent parser.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ABEE1446-5A07-487A-B338-957FDC76F39F}</ProjectGuid>
