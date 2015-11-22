@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPU.cpp" />
-    <ClCompile Include="stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platypus.h" />
