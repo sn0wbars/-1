@@ -69,18 +69,18 @@ int main()
 	}
 
 	FILE* fInput = fopen(InputName1, "rb");
-	if (fInput == nullptr) return perror("Can't open file\nErrno"), __LINE__;
+	if (fInput == nullptr) return perror("Can't open file\nErrno"), 1;
 
 	const int lenght = Lenght(fInput);
-	if (lenght < 0) return perror("Negative lenght of file\nErrno"), __LINE__;
+	if (lenght < 0) return perror("Negative lenght of file\nErrno"), 1;
 	if (dump) fprintf(dumpFile, "Size of file: %d\n", lenght);
 
 	char* buffer = (char*)calloc(lenght, sizeof(*buffer));
-	if (buffer == nullptr) return perror("Can't create buffer\nErrno"), __LINE__;
+	if (buffer == nullptr) return perror("Can't create buffer\nErrno"), 1;
 
 	const int numOfWasRead = (fread_s(buffer, lenght, sizeof(char), lenght, fInput));
 	if (dump) fprintf(dumpFile, "Number of read symbols: %d\n", numOfWasRead);
-	if(numOfWasRead != lenght) return perror("Number of read symbols isn't equal lenght of file\nErrno"), __LINE__;
+	if(numOfWasRead != lenght) return perror("Number of read symbols isn't equal lenght of file\nErrno"), 1;
 	fclose(fInput);
 	
 	if (dump) 
@@ -91,20 +91,20 @@ int main()
 		}
 
 	const int numOfLines = countNumberOfLines(buffer, lenght);
-	if (numOfLines < 0) return perror("Negative number of lines\nErrno"), __LINE__;
+	if (numOfLines < 0) return perror("Negative number of lines\nErrno"), 1;
 
 	char** linesArray = (char**)calloc(numOfLines, sizeof(linesArray[0]));
-	if (linesArray == nullptr) return perror("Can't create Array of lines\nErrno"), __LINE__;
+	if (linesArray == nullptr) return perror("Can't create Array of lines\nErrno"), 1;
 	if (dump) fprintf(dumpFile, "sizeof(linesArray): %d\nNumber of Lines: %d\n",
 		sizeof(linesArray), numOfLines);
 
 	if (CreateLinesArray(buffer, lenght, numOfLines, linesArray))
-		return perror("Can't fill array of lines\nErrno"), __LINE__;
+		return perror("Can't fill array of lines\nErrno"), 1;
 
 	if (SortMode == bubble) BubbleSort(linesArray, *strcmp, numOfLines);
 	else qsort(linesArray, numOfLines, sizeof(linesArray[0]), strcmpbegin);
 	Write(linesArray, OutputName1, numOfLines);
-	if (errno) return perror("Error"), __LINE__;
+	if (errno) return perror("Error"), 1;
 	
 	mystring* stringesArray = (mystring*)calloc(numOfLines,sizeof(stringesArray[0]));
 	for (int i = 0; i < numOfLines; ++i)
@@ -114,7 +114,7 @@ int main()
 
 	qsort(stringesArray, numOfLines, sizeof(stringesArray[0]), mystring_strcmpend);
 	Write(stringesArray, OutputName2, numOfLines);
-	if (errno) return perror("Error"), __LINE__;
+	if (errno) return perror("Error"), 1;
 
 	free(buffer);
 	buffer = NULL;
