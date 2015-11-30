@@ -6,7 +6,7 @@ const char Version[] = "1.1";
 void print_help();
 void print_error(FILE* fOutput, char name[]);
 
-bool disasm_number(FILE* fInput, FILE* fOutput);
+bool disasm_push(FILE* fInput, FILE* fOutput);
 //bool asm_jump(FILE* fInput, FILE* fOutput);
 
 int main(int argc, char* argv[])
@@ -48,12 +48,12 @@ int main(int argc, char* argv[])
 	FILE* fOutput = fopen(OutputName, "wb");
 	if (fOutput == nullptr) return perror("Can't open Output file\nErrno"), 4;
 
-	char str;
+	char str = 0;
 
 	while (fscanf(fInput, "%d", str) != EOF)
 	{
 		printf("%d ", str);
-		#define DEF_CMD(name, num, code, codeDisasm)\
+		#define DEF_CMD(name, num, code, codeAsm, codeDisasm)\
 		if(str == num)\
 		{\
 				fprintf(fOutput, #name" ");\
@@ -74,42 +74,6 @@ int main(int argc, char* argv[])
 	fclose(fOutput);
 	printf("Programm was written into %s.\n", OutputName);
 
-	return 0;
-}
-
-bool disasm_jump(FILE* fInput, FILE* fOutput)
-{
-	static int number_of_marks = 0;
-
-	const char mark[MAX_LENGTHofCOMMAND] = {"MARK"};
-	int numMark = 0;
-	int numCommand = -1;
-	char command = 0;
-	char string[MAX_LENGTHofCOMMAND] = {};
-
-	fscanf(fInput, "%d", &numMark);
-	long int positionInput = ftell(fInput);
-	long int positionOutput = ftell(fOutput);
-
-	fseek(fOutput, 0, SEEK_SET);
-	while (fscanf(fOutput, "%d", string) != EOF)
-	{
-		++numCommand;
-		if (string[0] == ':')
-			numCommand -= 2;
-		if (_stricmp(string, "PUSH") == 0) numCommand += SIZEofTYPEofNUMBERS - 1;
-		if (numCommand == numMark)
-		{
-			fprintf(fOutput, ": \n%s%d", mark, number_of_marks);
-			fseek(fOutput, positionOutput, SEEK_SET);
-			return 1;
-		}
-		if (errno) return print_error(fOutput, "jump"), 0;
-	}
-	while (fscanf(fOutput, "%d", string) != EOF)
-
-
-	++number_of_marks;
 	return 0;
 }
 
@@ -146,3 +110,5 @@ Parametres:\n\
 Intput file has to have .bin expansion\n"
 );
 };
+
+bool disasm_jump(FILE* fInput, FILE* fOutput) { return 1; }

@@ -51,6 +51,9 @@
 struct Cpu
 {
 	TYPEofCPU ax;
+	TYPEofCPU bx;
+	TYPEofCPU cx;
+
 	Stack stack;
 
 	bool state = 0;
@@ -133,6 +136,59 @@ bool Cpu_pop_ax(Cpu* This)
 	return 0;
 }
 
+
+bool Cpu_pop(Cpu* This)
+{
+	ASSERT_OK(Cpu, This);
+	int val;
+	if (Stack_pop(&This->stack, &This->ax))
+	{
+		ASSERT_OK(Cpu, This);
+		return 1;
+	}
+	This->state = 0;
+	ASSERT_OK(Cpu, This);
+	return 0;
+}
+
+bool Cpu_push_bx(Cpu* This)
+{
+	ASSERT_OK(Cpu, This);
+	return Cpu_push(This, This->bx);
+}
+
+bool Cpu_pop_bx(Cpu* This)
+{
+	ASSERT_OK(Cpu, This);
+	if (Stack_pop(&This->stack, &This->bx))
+	{
+		ASSERT_OK(Cpu, This);
+		return 1;
+	}
+	This->state = 0;
+	ASSERT_OK(Cpu, This);
+	return 0;
+}
+
+bool Cpu_push_cx(Cpu* This)
+{
+	ASSERT_OK(Cpu, This);
+	return Cpu_push(This, This->cx);
+}
+
+bool Cpu_pop_cx(Cpu* This)
+{
+	ASSERT_OK(Cpu, This);
+	if (Stack_pop(&This->stack, &This->cx))
+	{
+		ASSERT_OK(Cpu, This);
+		return 1;
+	}
+	This->state = 0;
+	ASSERT_OK(Cpu, This);
+	return 0;
+}
+
 bool Cpu_pow(Cpu* This)
 {
 	ASSERT_OK(Cpu, This);
@@ -178,6 +234,38 @@ bool Cpu_dup(Cpu* This)
 	return 0;
 }
 
+bool Cpu_sqrt(Cpu* This)
+{
+	ASSERT_OK(Cpu, This);
+	TYPEofCPU a = 0;
+	if (Stack_pop(&This->stack, &a))
+	{
+		ASSERT_OK(Cpu, This);
+		return Cpu_push(This, (TYPEofCPU)sqrt((double)a));
+	}
+	This->state = 0;
+	ASSERT_OK(Cpu, This);
+	return 0;
+}
+
+bool Cpu_in(Cpu* This)
+{
+	ASSERT_OK(Cpu, This);
+
+	TYPEofCPU val;
+	if (scanf("%d", &val))
+	{
+		Cpu_push(This, val);
+		return 1;
+	}
+	else
+	{
+		This->state = 0;
+		ASSERT_OK(Cpu, This);
+		return 0;
+	}
+}
+
 bool Cpu_exe(Cpu* This, const char cmd[])
 {
 	unsigned int i = 0;
@@ -189,7 +277,7 @@ bool Cpu_exe(Cpu* This, const char cmd[])
 			case num:\
 			{\
 				code\
-				Cpu_DUMP(This);\
+				if (DUMP_ON) Cpu_DUMP(This);\
 			}\
 			break;
 			#include "CmdList.h"
@@ -200,16 +288,16 @@ bool Cpu_exe(Cpu* This, const char cmd[])
 	return 1;
 }
 
-int main() //test
-{
-	Cpu processor;
-	assert(Cpu_ctor(&processor));
-
-	char massive[] = { 1, 6, 39, 0, 0, 1, 101, 0, 0, 0, 9, 1, 0, 0, 0, 1, 10, 4, 9, 0};
-	Cpu_exe(&processor, massive);
-	Stack_DUMP(&processor.stack,"stk");
-	Cpu_dctor(&processor);
-	return 0;
-}
+//int main() //test
+//{
+//	Cpu processor;
+//	assert(Cpu_ctor(&processor));
+//
+//	char massive[] = { 1, 6, 39, 0, 0, 1, 101, 0, 0, 0, 9, 1, 0, 0, 0, 1, 10, 4, 9, 0};
+//	Cpu_exe(&processor, massive);
+//	Stack_DUMP(&processor.stack,"stk");
+//	Cpu_dctor(&processor);
+//	return 0;
+//}
 
 //Cpu_DUMP(This);\

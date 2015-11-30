@@ -6,7 +6,7 @@ const char Version[] = "1.1";
 void print_help();
 void print_error(FILE* fOutput, char name[]);
 
-bool asm_number(FILE* fInput, FILE* fOutput);
+bool asm_push(FILE* fInput, FILE* fOutput);
 bool asm_jump(FILE* fInput, FILE* fOutput);
 
 int main(int argc, char* argv[])
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 		#define DEF_CMD(name, num, code, codeAsm, codeDisasm)\
 		if(_stricmp(str, #name) == 0)\
 		{\
-				fprintf(fOutput, #num" ");\
+				fprintf(fOutput,"%c", num);\
 				codeAsm;\
 		}\
 		else 
@@ -102,7 +102,7 @@ bool asm_jump(FILE* fInput, FILE* fOutput)
 			fscanf(fInput, "%s", string);
 			if (strcmp(string, mark) == 0)
 			{
-				fprintf(fOutput, "%d ", numCommand);
+				fprintf(fOutput, "%c", numCommand);
 				fseek(fInput, position, SEEK_SET);
 				return 1;
 			}
@@ -127,14 +127,14 @@ bool asm_push(FILE* fInput, FILE* fOutput)
 		memcpy(bytes, &number, SIZEofTYPEofNUMBERS);
 		for (int i = 0; i < SIZEofTYPEofNUMBERS; ++i)
 		{
-			fprintf(fOutput, "%d ", bytes[i]);
+			fprintf(fOutput, "%c", bytes[i]);
 		}
 		if (errno) return print_error(fOutput, "push"), 0;
 	}
 	else if (SIZEofTYPEofNUMBERS == sizeof(char))
 	{
 		fscanf(fInput, "%c", number);
-		fprintf(fOutput, "%d", number);
+		fprintf(fOutput, "%c", number);
 		if (errno) return print_error(fOutput, "push"), 0;
 	}
 	else

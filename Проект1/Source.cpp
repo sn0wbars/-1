@@ -14,6 +14,8 @@ int main()
 	return 0;
 }
 
+
+
 //bool Cpu_add(Cpu* This)
 //{
 //	ASSERT_OK(Cpu, This);
@@ -63,5 +65,43 @@ int main()
 //		return Cpu_push(This, a / b);
 //	}
 //	ASSERT_OK(Cpu, This);
+//	return 0;
+//}
+
+
+
+//bool disasm_jump(FILE* fInput, FILE* fOutput)
+//{
+//	static int number_of_marks = 0;
+//
+//	const char mark[MAX_LENGTHofCOMMAND] = { "MARK" };
+//	int numMark = 0;
+//	int numCommand = -1;
+//	char command = 0;
+//	char string[MAX_LENGTHofCOMMAND] = {};
+//
+//	fscanf(fInput, "%d", &numMark);
+//	long int positionInput = ftell(fInput);
+//	long int positionOutput = ftell(fOutput);
+//
+//	fseek(fOutput, 0, SEEK_SET);
+//	while (fscanf(fOutput, "%d", string) != EOF)
+//	{
+//		++numCommand;
+//		if (string[0] == ':')
+//			numCommand -= 2;
+//		if (_stricmp(string, "PUSH") == 0) numCommand += SIZEofTYPEofNUMBERS - 1;
+//		if (numCommand == numMark)
+//		{
+//			fprintf(fOutput, ": \n%s%d", mark, number_of_marks);
+//			fseek(fOutput, positionOutput, SEEK_SET);
+//			return 1;
+//		}
+//		if (errno) return print_error(fOutput, "jump"), 0;
+//	}
+//	while (fscanf(fOutput, "%d", string) != EOF)
+//
+//
+//		++number_of_marks;
 //	return 0;
 //}

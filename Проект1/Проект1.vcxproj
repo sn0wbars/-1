@@ -19,46 +19,56 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="2007_1_A.cpp" />
-    <ClCompile Include="2007_1_B.cpp" />
-    <ClCompile Include="2007_1_C.cpp" />
-    <ClCompile Include="2007_1_D.cpp" />
-    <ClCompile Include="2007_4_A.cpp" />
-    <ClCompile Include="2007_4_B.cpp" />
-    <ClCompile Include="2007_4_C.cpp" />
-    <ClCompile Include="2007_4_D.cpp" />
-    <ClCompile Include="2008_5_A.cpp" />
-    <ClCompile Include="2008_5_B.cpp" />
-    <ClCompile Include="2008_5_C.cpp" />
-    <ClCompile Include="2008_5_D.cpp" />
-    <ClCompile Include="asm.cpp" />
-    <ClCompile Include="CPU.cpp" />
-    <ClCompile Include="disasm.cpp" />
-    <ClCompile Include="list.cpp" />
-    <ClCompile Include="OneginSort.cpp" />
+    <ClInclude Include="List\platypus.h" />
+    <ClInclude Include="Stack_processor\CmdList.h" />
+    <ClInclude Include="Stack_processor\CPU.h" />
+    <ClInclude Include="Stack_processor\platypus.h" />
+    <ClInclude Include="Stack_processor\stack.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Calculator\Recursive descent parser.cpp" />
+    <ClCompile Include="List\list.cpp" />
+    <ClCompile Include="Oneginsort\OneginSort.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Stack_processor\asm.cpp" />
+    <ClCompile Include="Stack_processor\disasm.cpp" />
+    <ClCompile Include="Stack_processor\main.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2007_1_A.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2007_1_B.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2007_1_C.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2007_1_D.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2007_4_A.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2007_4_B.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2007_4_C.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2007_4_D.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2008_5_A.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2008_5_B.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2008_5_C.cpp" />
+    <ClCompile Include="TESTS 2007-2008\2008_5_D.cpp" />
     <ClCompile Include="Конспект.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="onegin.txt" />
-    <Text Include="OneginSortFromBegin.txt" />
-    <Text Include="OneginSortFromEnd.txt" />
-    <Text Include="q.txt" />
+    <Text Include="Calculator\~ULTRA_SWAG_DOGE_dump.txt" />
+    <Text Include="code.txt" />
+    <Text Include="List\List_dump.txt" />
+    <Text Include="List_dump.txt" />
+    <Text Include="Oneginsort\onegin.txt" />
+    <Text Include="Oneginsort\OneginSortFromBegin.txt" />
+    <Text Include="Oneginsort\OneginSortFromEnd.txt" />
+    <Text Include="Oneginsort\~OneginSort_dump.txt" />
+    <Text Include="programm.txt" />
     <Text Include="source.txt" />
     <Text Include="Stack_dump.txt" />
+    <Text Include="Stack_processor\code.txt" />
+    <Text Include="Stack_processor\programm.txt" />
+    <Text Include="Stack_processor\q.txt" />
+    <Text Include="Stack_processor\Stack_dump.txt" />
     <Text Include="test.txt" />
-    <Text Include="~OneginSort_dump.txt" />
-    <Text Include="~ULTRA_SWAG_DOGE_dump.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CmdList.h" />
-    <ClInclude Include="platypus.h" />
-    <ClInclude Include="stack.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="code.bin" />
-    <None Include="jpg.bin" />
-    <None Include="q.txt.bin" />
+    <None Include="programm.txt.bin" />
+    <None Include="Stack_processor\jpg.bin" />
+    <None Include="Stack_processor\q.txt.bin" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ABEE1446-5A07-487A-B338-957FDC76F39F}</ProjectGuid>
