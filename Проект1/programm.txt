@@ -1,5 +1,12 @@
-PUSH 9990
-PUSH 101
+BRZ 1.2
+push 1
+pop_ax
+in 
+in
+pop_cx
+push 2
 ADD
+OUT
+push_cx
 OUT
 END

@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="List\platypus.h">
+    <ClInclude Include="Stack_processor\CmdList.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack_processor\CPU.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Stack_processor\platypus.h">
@@ -24,102 +27,58 @@
     <ClInclude Include="Stack_processor\stack.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Stack_processor\CPU.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack_processor\CmdList.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="List\list.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Конспект.cpp">
+    <ClCompile Include="Stack_processor\asm.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2008_5_D.cpp">
+    <ClCompile Include="Конспект.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2008_5_C.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2008_5_B.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2008_5_A.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2007_4_D.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2007_4_C.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2007_4_B.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2007_4_A.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2007_1_D.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2007_1_C.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2007_1_B.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="TESTS 2007-2008\2007_1_A.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Stack_processor\main.cpp">
+    <ClCompile Include="x64\Source.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Stack_processor\disasm.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Stack_processor\asm.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Oneginsort\OneginSort.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Calculator\Recursive descent parser.cpp">
+    <ClCompile Include="Stack_processor\main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test.txt" />
-    <Text Include="Stack_dump.txt" />
-    <Text Include="source.txt" />
-    <Text Include="programm.txt" />
-    <Text Include="List_dump.txt" />
-    <Text Include="code.txt" />
-    <Text Include="Stack_processor\Stack_dump.txt" />
-    <Text Include="Stack_processor\q.txt" />
-    <Text Include="Stack_processor\programm.txt" />
-    <Text Include="Stack_processor\code.txt" />
-    <Text Include="Oneginsort\OneginSortFromEnd.txt" />
-    <Text Include="Oneginsort\OneginSortFromBegin.txt" />
-    <Text Include="Oneginsort\onegin.txt" />
-    <Text Include="Oneginsort\~OneginSort_dump.txt" />
-    <Text Include="List\List_dump.txt" />
-    <Text Include="Calculator\~ULTRA_SWAG_DOGE_dump.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="programm.txt.bin">
+    <None Include="code.bin">
       <Filter>Файлы ресурсов</Filter>
     </None>
-    <None Include="Stack_processor\q.txt.bin">
+    <None Include="code2.bin">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="solve_square.txt.bin">
       <Filter>Файлы ресурсов</Filter>
     </None>
     <None Include="Stack_processor\jpg.bin">
       <Filter>Файлы ресурсов</Filter>
     </None>
+    <None Include="Stack_processor\q.txt.bin">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="code.txt" />
+    <Text Include="List_dump.txt" />
+    <Text Include="programm_square_equalation.txt" />
+    <Text Include="source.txt" />
+    <Text Include="Stack_dump.txt" />
+    <Text Include="test.txt" />
+    <Text Include="programm.txt" />
+    <Text Include="solve_square.txt" />
+    <Text Include="solve_square2.txt" />
+    <Text Include="Stack_processor\code.txt" />
+    <Text Include="Stack_processor\programm.txt" />
+    <Text Include="Stack_processor\programm_square_equalation.txt" />
+    <Text Include="Stack_processor\q.txt" />
+    <Text Include="Stack_processor\Stack_dump.txt" />
   </ItemGroup>
 </Project>

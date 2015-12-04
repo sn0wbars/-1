@@ -92,6 +92,16 @@ bool Stack_dctor(Stack* This)
 	return 1;
 }
 
+
+bool Stack_realloc(Stack* This)
+{
+	ASSERT_OK(Stack, This);
+	This->size *= 2;
+	This->arr = realloc(ACCESS(This->arr), This->size);
+	This->arrPtr = ACCESS(This->arr) + This->amount;
+	ASSERT_OK(Stack, This);
+}
+
 bool Stack_push(Stack* This, TYPEofSTACK val)
 {
 	ASSERT_OK(Stack, This);
@@ -99,12 +109,8 @@ bool Stack_push(Stack* This, TYPEofSTACK val)
 	if ((This->amount + 1) * sizeof(TYPEofSTACK) > This->size)
 	{
 		if (This->size < MAXmemory)
-		{
-			This->size *= 2;
-			This->arr = realloc(ACCESS(This->arr), This->size);
-			This->arrPtr = ACCESS(This->arr) + This->amount;
-			ASSERT_OK(Stack, This);
-		}
+			if (!Stack_realloc(This))
+				return 0;
 		else return 0;
 	}
 

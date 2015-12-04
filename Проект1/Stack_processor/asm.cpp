@@ -1,7 +1,7 @@
 #include "platypus.h"
 #include <string.h>
 
-const char Version[] = "1.1";
+const char Version[] = "1.2";
 
 void print_help();
 void print_error(FILE* fOutput, char name[]);
@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	switch (argc)
 	{
 	case 1:
-		strcpy(InputName, "programm.txt");
+		strcpy(InputName, "solve_square.txt");
 		strcpy(OutputName, "code");
 		break;
 	case 2:
@@ -51,11 +51,23 @@ int main(int argc, char* argv[])
 	char str[MAX_LENGTHofCOMMAND] = {};
 
 	//int NumCommand = -1; 
+	if (!fscanf(fInput, "%s", str)) return perror("Can't read file\nErrno"), 5;
+	if (strcmp(str, SIGNATURE))
+	{
+		printf("Wrong Signature\n");
+		return 6;
+	}
+	if (!fscanf(fInput, "%s", str)) return perror("Can't read file\nErrno"), 5;
+
+	if (strcmp(str, Version))
+	{
+		printf("Incompatible versions\n");
+		return 7;
+	}
 
 	while (fscanf(fInput, "%s", str) != EOF)
 	{
 		printf("%s ", str);
-		//NumCommand++;
 		#define DEF_CMD(name, num, code, codeAsm, codeDisasm)\
 		if(_stricmp(str, #name) == 0)\
 		{\
@@ -91,7 +103,7 @@ bool asm_jump(FILE* fInput, FILE* fOutput)
 
 	fscanf(fInput, "%s", &mark);
 	long int position = ftell(fInput);
-	int numCommand = -1; // numeration from 0
+	int numCommand = -3; // numeration from 0
 
 	fseek(fInput, 0, SEEK_SET);
 	while (fscanf(fInput, "%s", string) != EOF)

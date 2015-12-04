@@ -27,7 +27,6 @@ int main(int argc, char* argv[])
 	Cpu_OK(&processor);
 
 	char programm[MAX_PROGRAM_SIZE] = {};
-
 	FILE* fInput = fopen(InputName, "rb");
 	if (errno) return perror("Can't open file\nErrno"), 1;
 

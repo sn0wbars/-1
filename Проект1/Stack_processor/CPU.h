@@ -60,7 +60,7 @@ struct Cpu
 };
 
 
-int Cpu_OK(Cpu* This) // пока почти бессмысленен
+int Cpu_OK(Cpu* This)
 {
 	assert(This);
 	if (!This->state) return 1;
@@ -69,10 +69,15 @@ int Cpu_OK(Cpu* This) // пока почти бессмысленен
 
 bool Cpu_DUMP(const Cpu* This, const char name[]="Cpu.stack", int error = 0)
 {
+	static bool print_hint = 1;
+
 	assert(This);
 	printf("ax = %d\n", This->ax);
+	printf("bx = %d\n", This->bx);
+	printf("cx = %d\n", This->cx);
 	Stack_DUMP(&This->stack, name, error);
-	printf("You can find more information in Stack_dump.txt :P\n");
+	if (print_hint) printf("You can find more information in Stack_dump.txt :P\n");
+	print_hint = 0;
 	return 1;
 }
 

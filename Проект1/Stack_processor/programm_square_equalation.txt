@@ -1,0 +1,121 @@
+BRZ 1.2
+in
+pop ax
+in
+pop bx
+in
+pop cx
+push ax
+push 0
+je AE0
+push bx
+push 0
+je BE0
+push cx
+push 0
+je CE0
+push bx
+push bx 
+push cx
+mul
+push 4
+mul
+sub
+ja DA0
+je DE0
+jump exit0
+
+AEO:
+push bx
+push 0
+je ABE0
+push bx
+push cx
+push 0 
+sub
+div
+jump exit1 
+
+ABE0:
+push cx
+push 0
+je exit3
+jump exit0
+
+BE0:
+push 0
+push ax
+push cx
+push 0
+sub
+div
+jb exit0
+sqrt
+dup
+push 0
+sub
+jump exit2
+
+CE0:
+push ax
+push bx
+push 0
+div
+div
+push 0
+jump exit2
+
+DA0:
+sqrt
+pop cx
+push 2
+push ax
+mul
+dup
+push bx
+push cx
+push 0
+sub
+div
+pop ax
+push bx
+push cxsub
+div
+push ax
+jump exit2
+
+DE0:
+push ax
+push 2
+mul
+push bx
+push 0
+sub
+div
+jmp exit1
+
+exit0:
+push 0
+out
+jump exit
+
+exit1:
+push 1
+out
+out
+jump exit
+
+exit2:
+push 2
+out
+out
+out
+jump exit
+
+exit3:
+push -1
+out
+jump exit
+
+exit:
+end
