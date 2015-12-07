@@ -19,41 +19,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Stack_processor\CmdList.h" />
-    <ClInclude Include="Stack_processor\CPU.h" />
-    <ClInclude Include="Stack_processor\platypus.h" />
-    <ClInclude Include="Stack_processor\stack.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="HashTable\HashTable.cpp" />
     <ClCompile Include="Stack_processor\asm.cpp" />
     <ClCompile Include="Stack_processor\disasm.cpp" />
     <ClCompile Include="Stack_processor\main.cpp" />
     <ClCompile Include="x64\Source.cpp" />
-    <ClCompile Include="Конспект.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="code.bin" />
     <None Include="code2.bin" />
     <None Include="solve_square.txt.bin" />
     <None Include="Stack_processor\jpg.bin" />
-    <None Include="Stack_processor\q.txt.bin" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="code.txt" />
+    <Text Include="fibbanachi.txt" />
     <Text Include="List_dump.txt" />
     <Text Include="programm.txt" />
-    <Text Include="programm_square_equalation.txt" />
     <Text Include="solve_square.txt" />
     <Text Include="solve_square2.txt" />
-    <Text Include="source.txt" />
     <Text Include="Stack_dump.txt" />
-    <Text Include="Stack_processor\code.txt" />
-    <Text Include="Stack_processor\programm.txt" />
-    <Text Include="Stack_processor\programm_square_equalation.txt" />
-    <Text Include="Stack_processor\q.txt" />
-    <Text Include="Stack_processor\Stack_dump.txt" />
     <Text Include="test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HashTable\list.h" />
+    <ClInclude Include="HashTable\platypus.h" />
+    <ClInclude Include="HashTable\stack.h" />
+    <ClInclude Include="platypus.h" />
+    <ClInclude Include="Stack_processor\CmdList.h" />
+    <ClInclude Include="Stack_processor\CPU.h" />
+    <ClInclude Include="Stack_processor\platypus.h" />
+    <ClInclude Include="Stack_processor\stack.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ABEE1446-5A07-487A-B338-957FDC76F39F}</ProjectGuid>

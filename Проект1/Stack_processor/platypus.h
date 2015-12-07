@@ -16,6 +16,7 @@
 #endif
 
 const bool DUMP_ON = true;
+const int MAX_FILE_NAME = 32;
 const int MAX_LENGTHofCOMMAND = 8;
 const int SIZEofTYPEofNUMBERS = sizeof(TYPEofNUMBERS);
 const int MAX_PROGRAM_SIZE = 250;

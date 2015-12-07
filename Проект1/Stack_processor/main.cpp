@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 	Cpu processor;
-	Cpu_ctor(&processor, 256);
+	Cpu_ctor(&processor, 64);
 	Cpu_OK(&processor);
 
 	char programm[MAX_PROGRAM_SIZE] = {};
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
 	const int numOfWasRead = fread(programm, sizeof(char), lenght, fInput);
 	if (numOfWasRead != lenght) return perror("Number of read symbols isn't equal lenght of file\nErrno"), 1;
 
-	if (DUMP_ON) for (int i = 0; i < lenght; ++i) printf("%d ", programm[i]);
+	if (DUMP_ON) for (int i = 0; i < lenght; ++i) printf("%d. %d\n",i , programm[i]);
 	if (errno) return perror("Can't read file\nErrno"), 1;
 
 	Cpu_exe(&processor, programm);

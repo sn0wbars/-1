@@ -35,7 +35,7 @@
 	if (Stack_pop(&This->stack, &a) && Stack_pop(&This->stack, &b))\
 	{\
 		ASSERT_OK(Cpu, This);\
-		if (a op b) i = cmd[i+1];\
+		if (a op b) i = (unsigned char)cmd[i+1];\
 		else i+=2;\
 		Cpu_push(This, b);\
 		Cpu_push(This, a);\
@@ -74,7 +74,7 @@ bool Cpu_DUMP(const Cpu* This, const char name[]="Cpu.stack", int error = 0)
 	assert(This);
 	printf("ax = %d\n", This->ax);
 	printf("bx = %d\n", This->bx);
-	printf("cx = %d\n", This->cx);
+	printf("cx = %d\n\n", This->cx);
 	Stack_DUMP(&This->stack, name, error);
 	if (print_hint) printf("You can find more information in Stack_dump.txt :P\n");
 	print_hint = 0;

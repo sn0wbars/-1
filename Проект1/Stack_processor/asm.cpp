@@ -11,11 +11,11 @@ bool asm_jump(FILE* fInput, FILE* fOutput);
 
 int main(int argc, char* argv[])
 {
-	char InputName[32] = {}, OutputName[32] = {};
+	char InputName[MAX_FILE_NAME] = {}, OutputName[MAX_FILE_NAME] = {};
 	switch (argc)
 	{
 	case 1:
-		strcpy(InputName, "solve_square.txt");
+		strcpy(InputName, "programm.txt");
 		strcpy(OutputName, "code");
 		break;
 	case 2:
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
 	while (fscanf(fInput, "%s", str) != EOF)
 	{
-		printf("%s ", str);
+		if (DUMP_ON) printf("%s ", str);
 		#define DEF_CMD(name, num, code, codeAsm, codeDisasm)\
 		if(_stricmp(str, #name) == 0)\
 		{\
@@ -103,12 +103,11 @@ bool asm_jump(FILE* fInput, FILE* fOutput)
 
 	fscanf(fInput, "%s", &mark);
 	long int position = ftell(fInput);
-	int numCommand = -3; // numeration from 0
+	unsigned int numCommand = -2; // numeration from 0. -2, because of signature and version
 
 	fseek(fInput, 0, SEEK_SET);
 	while (fscanf(fInput, "%s", string) != EOF)
 	{
-		++numCommand;
 		if (string[0] == ':')
 		{
 			fscanf(fInput, "%s", string);
@@ -119,6 +118,7 @@ bool asm_jump(FILE* fInput, FILE* fOutput)
 				return 1;
 			}
 		}
+		else ++numCommand;
 		if (_stricmp(string, "PUSH") == 0) numCommand += SIZEofTYPEofNUMBERS - 1;
 		if (errno) return print_error(fOutput, "jump"), 0;
 	}

@@ -14,11 +14,14 @@ je BE0
 push_cx
 push 0
 je CE0
-push_bx
-push_bx 
+
+push_ax 
 push_cx
 mul
 push 4
+mul
+push_bx
+push_bx
 mul
 sub
 ja DA0
@@ -43,7 +46,9 @@ je exit3
 jmp exit0
 
 : BE0
+push_cx
 push 0
+je exit1
 push_ax
 push_cx
 push 0
@@ -60,7 +65,7 @@ jmp exit2
 push_ax
 push_bx
 push 0
-div
+sub
 div
 push 0
 jmp exit2

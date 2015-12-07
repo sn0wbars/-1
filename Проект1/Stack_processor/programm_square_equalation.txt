@@ -14,11 +14,14 @@ je BE0
 push cx
 push 0
 je CE0
-push bx
-push bx 
+
+push ax 
 push cx
 mul
 push 4
+mul
+push bx
+push bx
 mul
 sub
 ja DA0

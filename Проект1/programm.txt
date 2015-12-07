@@ -1,12 +1,12 @@
 BRZ 1.2
 push 1
-pop_ax
-in 
-in
-pop_cx
 push 2
-ADD
-OUT
-push_cx
-OUT
+jmp qwe1
+: qqq2
+add
+jmp qwe
+: qwe1
+jmp qqq2
+: qwe
+out
 END

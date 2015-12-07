@@ -15,30 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Stack_processor\CmdList.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack_processor\CPU.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack_processor\platypus.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack_processor\stack.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Stack_processor\asm.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Конспект.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="x64\Source.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="HashTable\HashTable.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack_processor\asm.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Stack_processor\disasm.cpp">
@@ -61,24 +44,40 @@
     <None Include="Stack_processor\jpg.bin">
       <Filter>Файлы ресурсов</Filter>
     </None>
-    <None Include="Stack_processor\q.txt.bin">
-      <Filter>Файлы ресурсов</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="code.txt" />
     <Text Include="List_dump.txt" />
-    <Text Include="programm_square_equalation.txt" />
-    <Text Include="source.txt" />
     <Text Include="Stack_dump.txt" />
     <Text Include="test.txt" />
     <Text Include="programm.txt" />
     <Text Include="solve_square.txt" />
     <Text Include="solve_square2.txt" />
-    <Text Include="Stack_processor\code.txt" />
-    <Text Include="Stack_processor\programm.txt" />
-    <Text Include="Stack_processor\programm_square_equalation.txt" />
-    <Text Include="Stack_processor\q.txt" />
-    <Text Include="Stack_processor\Stack_dump.txt" />
+    <Text Include="fibbanachi.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="platypus.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable\platypus.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable\list.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable\stack.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack_processor\CmdList.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack_processor\CPU.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack_processor\platypus.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack_processor\stack.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
