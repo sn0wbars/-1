@@ -34,3 +34,6 @@ DEF_CMD(JBE, 23, { Cpu_j(This, <= ); }, { asm_jump(fInput, fOutput); }, {})
 DEF_CMD(JE, 24, { Cpu_j(This, ==); }, { asm_jump(fInput, fOutput); }, {})
 DEF_CMD(JNE, 25, { Cpu_j(This, != ); }, { asm_jump(fInput, fOutput); }, {})
 DEF_CMD(JMP, 26, { i = (unsigned char)cmd[i + 1]; }, { asm_jump(fInput, fOutput); }, {})
+
+DEF_CMD(CALL, 30, { Stack_push(&This->func_adresses, i+2); i = (unsigned char)cmd[i + 1]; }, { asm_jump(fInput, fOutput); }, {})
+DEF_CMD(RET, 31, { Stack_pop(&This->func_adresses, &i); }, {}, {})

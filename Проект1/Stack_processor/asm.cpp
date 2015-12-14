@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 
 	fclose(fInput);
 	fclose(fOutput);
-	printf("Programm was written into %s.\n", OutputName);
+	printf("\nProgramm was written into %s.\n", OutputName);
 
 	return 0;
 }

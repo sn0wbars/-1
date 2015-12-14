@@ -21,6 +21,12 @@
     <ClCompile Include="HashTable\HashTable.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="Конспект.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
     <ClCompile Include="Stack_processor\asm.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
@@ -41,6 +47,22 @@
     <None Include="solve_square.txt.bin">
       <Filter>Файлы ресурсов</Filter>
     </None>
+    <None Include="datat.csv" />
+    <None Include="fibbonacci.bin">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="firstLtr.csv" />
+    <None Include="Hash_table.dmp" />
+    <None Include="length.csv" />
+    <None Include="length.xlsx" />
+    <None Include="stupid.csv" />
+    <None Include="stupid.xlsx" />
+    <None Include="sum.csv" />
+    <None Include="sum.xlsx" />
+    <None Include="sumcode.csv" />
+    <None Include="sumcode.xlsx" />
+    <None Include="XOR.csv" />
+    <None Include="XOR.xlsx" />
     <None Include="Stack_processor\jpg.bin">
       <Filter>Файлы ресурсов</Filter>
     </None>
@@ -52,19 +74,25 @@
     <Text Include="programm.txt" />
     <Text Include="solve_square.txt" />
     <Text Include="solve_square2.txt" />
-    <Text Include="fibbanachi.txt" />
+    <Text Include="fibbonacci.txt" />
+    <Text Include="data.txt" />
+    <Text Include="Stack_processor\programm_square_equalation.txt" />
+    <Text Include="Stack_processor\Stack_dump.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platypus.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="HashTable\platypus.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="HashTable\list.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="HashTable\platypus.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
     <ClInclude Include="HashTable\stack.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="List\list.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Stack_processor\CmdList.h">

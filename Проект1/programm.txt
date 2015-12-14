@@ -1,12 +1,37 @@
+
 BRZ 1.2
-push 1
-push 2
-jmp qwe1
-: qqq2
-add
-jmp qwe
-: qwe1
-jmp qqq2
-: qwe
+ 
+push 0
+pop_ax
+in
+call FIB
+push_ax
 out
-END
+jmp exit
+
+: FIB 
+push 3
+ja FIB12 
+pop_cx
+push -1
+add
+dup
+push -1
+add
+
+call FIB
+call FIB
+: FIB_ret
+ret
+ 
+: FIB12
+pop_cx
+pop_cx
+push 1
+push_ax
+add
+pop_ax
+jmp FIB_ret
+
+: exit
+end

@@ -1411,3 +1411,224 @@
 ********************************************
 
 
+20:49:21 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 121
+********************************************
+ first = 2298144
+ end = 2298144
+ number = 1
+
+0. 0000000000231120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:22:00 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 3674400
+ end = 3674400
+ number = 1
+
+0. 0000000000381120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:22:00 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 2756848
+ end = 2756848
+ number = 1
+
+0. 00000000002A10F0
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:24:27 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 1184032
+ end = 1184032
+ number = 1
+
+0. 0000000000121120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:25:30 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 790816
+ end = 790816
+ number = 1
+
+0. 00000000000C1120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:25:30 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 3477792
+ end = 3477792
+ number = 1
+
+0. 0000000000351120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:25:30 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 2756896
+ end = 2756896
+ number = 1
+
+0. 00000000002A1120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:30:37 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 4591904
+ end = 4591904
+ number = 1
+
+0. 0000000000461120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:30:37 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 2560288
+ end = 2560288
+ number = 1
+
+0. 0000000000271120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:33:59 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 1904928
+ end = 1904928
+ number = 1
+
+0. 00000000001D1120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:34:38 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 3871008
+ end = 3871008
+ number = 1
+
+0. 00000000003B1120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:35:12 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 3871008
+ end = 3871008
+ number = 1
+
+0. 00000000003B1120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+
+21:35:25 Dec 13 2015
+OMG! ERROR! ERROR!!11
+
+"List" this failed in c:\users\borz\documents\visual studio 2015\projects\проект1\проект1\hashtable\list.h/List_DUMP, 129
+********************************************
+ first = 3871008
+ end = 3871008
+ number = 1
+
+0. 00000000003B1120
+  m_prev = 0000000000000000
+  m_next = 0000000000000000
+  m_val = 0
+
+********************************************
+
+

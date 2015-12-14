@@ -20,30 +20,50 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HashTable\HashTable.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="Stack_processor\asm.cpp" />
     <ClCompile Include="Stack_processor\disasm.cpp" />
     <ClCompile Include="Stack_processor\main.cpp" />
     <ClCompile Include="x64\Source.cpp" />
+    <ClCompile Include="Конспект.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="code.bin" />
     <None Include="code2.bin" />
+    <None Include="datat.csv" />
+    <None Include="fibbonacci.bin" />
+    <None Include="firstLtr.csv" />
+    <None Include="Hash_table.dmp" />
+    <None Include="length.csv" />
+    <None Include="length.xlsx" />
     <None Include="solve_square.txt.bin" />
     <None Include="Stack_processor\jpg.bin" />
+    <None Include="stupid.csv" />
+    <None Include="stupid.xlsx" />
+    <None Include="sum.csv" />
+    <None Include="sum.xlsx" />
+    <None Include="sumcode.csv" />
+    <None Include="sumcode.xlsx" />
+    <None Include="XOR.csv" />
+    <None Include="XOR.xlsx" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="fibbanachi.txt" />
+    <Text Include="data.txt" />
+    <Text Include="fibbonacci.txt" />
     <Text Include="List_dump.txt" />
     <Text Include="programm.txt" />
     <Text Include="solve_square.txt" />
     <Text Include="solve_square2.txt" />
     <Text Include="Stack_dump.txt" />
+    <Text Include="Stack_processor\programm_square_equalation.txt" />
+    <Text Include="Stack_processor\Stack_dump.txt" />
     <Text Include="test.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashTable\list.h" />
     <ClInclude Include="HashTable\platypus.h" />
     <ClInclude Include="HashTable\stack.h" />
+    <ClInclude Include="List\list.h" />
     <ClInclude Include="platypus.h" />
     <ClInclude Include="Stack_processor\CmdList.h" />
     <ClInclude Include="Stack_processor\CPU.h" />

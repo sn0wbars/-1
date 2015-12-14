@@ -4,6 +4,8 @@
 #include <math.h>
 #include "platypus.h"
 
+const char Version[] = "1.3"; //todo: verification
+
 #ifdef TYPEofNUMBERS
 #define  TYPEofCPU TYPEofNUMBERS
 #else
@@ -55,6 +57,7 @@ struct Cpu
 	TYPEofCPU cx;
 
 	Stack stack;
+	Stack func_adresses;
 
 	bool state = 0;
 };
@@ -76,6 +79,7 @@ bool Cpu_DUMP(const Cpu* This, const char name[]="Cpu.stack", int error = 0)
 	printf("bx = %d\n", This->bx);
 	printf("cx = %d\n\n", This->cx);
 	Stack_DUMP(&This->stack, name, error);
+	Stack_DUMP(&This->func_adresses, "adresses", error);
 	if (print_hint) printf("You can find more information in Stack_dump.txt :P\n");
 	print_hint = 0;
 	return 1;
@@ -84,7 +88,7 @@ bool Cpu_DUMP(const Cpu* This, const char name[]="Cpu.stack", int error = 0)
 bool Cpu_ctor(Cpu* This, size_t buffer = 32)
 {
 	assert(This);
-	if (Stack_ctor(&This->stack, buffer))
+	if (Stack_ctor(&This->stack, buffer) && Stack_ctor(&This->func_adresses))
 	{
 		This->ax = 0;
 		This->state = 1;
@@ -273,7 +277,7 @@ bool Cpu_in(Cpu* This)
 
 bool Cpu_exe(Cpu* This, const char cmd[])
 {
-	unsigned int i = 0;
+	int i = 0;
 	while (cmd[i])
 	{
 		switch (cmd[i])

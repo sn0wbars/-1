@@ -1,0 +1,41 @@
+BRZ 1.2
+
+push 3
+in 
+jb FIB12
+pop_cx
+push 1
+pop_ax
+push 1
+pop_bx
+
+push 2
+push 1
+jmp FIB
+
+: FIB
+push_ax
+push_bx
+add
+push_bx
+pop_ax
+pop_bx
+
+push_cx
+sub
+je exitFib
+pop_cx
+push 1
+jmp FIB
+
+: FIB12
+push 1
+jmp exit
+
+: exitFib
+push_bx
+jmp exit
+
+: exit 
+out
+END
