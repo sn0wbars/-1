@@ -15,11 +15,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="x64\Source.cpp">
+    <ClInclude Include="stack.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="platypus.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HashTable.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Конспект.txt">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="datat.csv" />
+    <None Include="stupid.csv" />
+    <None Include="firstLtr.csv" />
+    <None Include="stupid.xlsx" />
+    <None Include="sum.csv" />
+    <None Include="sum.xlsx" />
+    <None Include="sumcode.csv" />
+    <None Include="sumcode.xlsx" />
+    <None Include="XOR.csv" />
+    <None Include="XOR.xlsx" />
+    <None Include="length.csv" />
+    <None Include="length.xlsx" />
+    <None Include="Hash_table.dmp" />
   </ItemGroup>
 </Project>
